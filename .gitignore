@@ -1,5 +1,6 @@
 # Python
 .venv/
+venv/
 __pycache__/
 *.pyc
 
@@ -7,5 +8,4 @@ __pycache__/
 .idea/
 
 # Mac
-.DS_Storevenv/
 .DS_Store

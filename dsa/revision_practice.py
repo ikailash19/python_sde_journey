@@ -57,3 +57,37 @@ def max_window_sum(arr, k):
 print(max_window_sum([2, 1, 5, 3, 7], 3)) # 15
 #########################################################################
 #########################################################################
+# Day 25 - Revision
+# Revise 1 - Longest Unique substrings
+def longest_unique_substring(s):
+    max_length = 0
+    left = 0
+    seen = set()
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        max_length = max(max_length, right - left + 1)
+    return max_length
+
+print(longest_unique_substring('abacdaea')) # 4
+########################################################################
+# Revise 2 - Count Unique substring
+def count_unique_substring(s):
+    unique_count = 0
+    left = 0
+    seen = set()
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        unique_count += right - left + 1
+    return unique_count
+
+print(count_unique_substring('abacdaea')) # 21
+#############################################################
+#############################################################
