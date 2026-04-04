@@ -91,3 +91,79 @@ def count_unique_substring(s):
 print(count_unique_substring('abacdaea')) # 21
 #############################################################
 #############################################################
+# Day 26 - Revision
+# Task 1 - Longest Unique Substring
+def longest_unique_substrings(s):
+    seen = set()
+    max_length = 0
+    left = 0
+    #0,1,2,3,
+    for right in range(len(s)):
+        #a in x,b in x,c in x, b in ->,
+        # b in ->,
+        while s[right] in seen:
+            #(b,c),(c),
+            seen.remove(s[left])
+            #left = 1,2
+            left += 1
+        #(a,b,c),(c,b,
+        seen.add(s[right])
+        #max_length=1,2,3,3,
+        max_length = max(max_length, right - left + 1)
+
+    return max_length
+
+print(longest_unique_substring("abcbdace")) # 5
+########################################################################
+# Task 2 - Count Unique Substrings
+def unique_substrings(s):
+    unique_count = 0
+    left = 0
+    seen = set()
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        unique_count += right - left + 1
+    return unique_count
+print(unique_substrings('abacdaea')) # 21
+######################################################################
+######################################################################
+# Day 27 - Revision
+# Task 1 - Minimum window substring
+# Given: s = "ADOBECODEBANC", t = "ABC"
+# Find the smallest substring in s that contains all characters of t
+
+def min_window(s, t):
+    result = "None"
+    left = 0
+    have = 0
+    need = len(t)
+    target = {}
+    window = {}
+    for char in t:
+        target[char] = target.get(char, 0) + 1
+    min_length = float("inf")
+
+    for right in range(len(s)):
+        window[s[right]] = window.get(s[right], 0) + 1
+
+        if s[right] in target and window[s[right]] == target[s[right]]:
+            have += 1
+
+        while have == need:
+            if (right - left + 1) < min_length:
+                min_length = right - left + 1
+                result = s[left:right+1]
+
+            window[s[left]] -= 1
+
+            if s[left] in target and window[s[left]] < target[s[left]]:
+                have -= 1
+            left += 1
+
+    return result
+
+print(min_window("ADOBECODEBANC", "ABC"))
