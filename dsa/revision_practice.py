@@ -131,7 +131,7 @@ def unique_substrings(s):
 print(unique_substrings('abacdaea')) # 21
 ######################################################################
 ######################################################################
-# Day 27 - Revision
+# Day 26 - Revision
 # Task 1 - Minimum window substring
 # Given: s = "ADOBECODEBANC", t = "ABC"
 # Find the smallest substring in s that contains all characters of t
@@ -167,3 +167,59 @@ def min_window(s, t):
     return result
 
 print(min_window("ADOBECODEBANC", "ABC"))
+######################################################################
+######################################################################
+# Day 27 - Revision
+# Task 1 - Minimum window substring
+# Given: s = "ADOBECODEBANC", t = "ABC"
+# Find the smallest substring in s that contains all characters of t
+
+def min_window_2(string,t):
+    left = 0
+    min_length = float("inf")
+    result = ""
+    target = {}
+    window = {}
+    have = 0
+    need = len(t)
+    for char in t:
+        target[char] = target.get(char, 0) + 1
+
+    for right in range(len(string)):
+        window[string[right]] = window.get(string[right], 0) + 1
+
+        if string[right] in target and window[string[right]] == target[string[right]]:
+            have += 1
+
+        while have == need:
+            if (right - left + 1) < min_length:
+                min_length = right - left + 1
+                result = string[left : right + 1]
+
+            window[string[left]] -= 1
+
+            if string[left] in target and window[string[left]] < target[string[left]]:
+                have -= 1
+
+            left += 1
+    return result
+
+print(min_window_2("ADOBECODEBANC", "ABC"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
