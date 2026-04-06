@@ -205,19 +205,71 @@ def min_window_2(string,t):
     return result
 
 print(min_window_2("ADOBECODEBANC", "ABC"))
+################################################################################################
+################################################################################################
+# Day 28 - Revision
+# Task 1 - Longest Repeating Character Replacement
+def longest_repeating_replacement(s,k):
+    max_length = 0
+    left = 0
+    seen = {}
+    max_freq = 0
 
+    for right in range (len(s)):
+        seen[s[right]] = seen.get(s[right], 0) + 1
 
+        max_length = max(max_length, right - left + 1)
 
+    return max_length
 
+print(longest_repeating_replacement("ABAACDA", 1)) # 4
+#################################################################################################
+# Task 2 - Longest string with k distinct
+def longest_k_distinct(s,k):
+    left = 0
+    count = {}
+    max_length = 0
+    for right in range(len(s)):
+        count[s[right]] = count.get(s[right], 0) + 1
+        while len(count) > k:
+            count[s[left]] -= 1
+            if count[s[left]] == 0:
+                del count[s[left]]
+            left += 1
+        max_length = max(max_length, right - left + 1)
+    return max_length
 
+print(longest_k_distinct("BCBBBBDBBBBBBBBBBD",3)) # 18
+##################################################################################################
+# Task 3 - Min window
+def min_window_3(s,t):
+    result = ""
+    target = {}
+    window = {}
+    min_length = float("inf")
+    left = 0
+    have = 0
+    for char in t:
+        target[char] = target.get(char, 0) + 1
+    for right in range(len(s)):
+        window[s[right]] = window.get(s[right], 0) + 1
 
+        if s[right] in target and window[s[right]] == target[s[right]]:
+            have += 1
 
+        while have == len(target):
+            if min_length > (right - left + 1):
+                min_length = right - left + 1
+                result = s[left:right+1]
 
+            window[s[left]] -= 1
 
+            if s[left] in target and window[s[left]] < target[s[left]]:
+                have -= 1
+            left += 1
+    return result
 
-
-
-
+print(min_window_3("AJOSFAIICMFAWD", "AMIF"))
 
 
 
