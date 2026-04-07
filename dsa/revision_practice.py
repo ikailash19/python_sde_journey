@@ -212,12 +212,15 @@ print(min_window_2("ADOBECODEBANC", "ABC"))
 def longest_repeating_replacement(s,k):
     max_length = 0
     left = 0
-    seen = {}
+    window = {}
     max_freq = 0
 
     for right in range (len(s)):
-        seen[s[right]] = seen.get(s[right], 0) + 1
-
+        window[s[right]] = window.get(s[right], 0) + 1
+        max_freq = max(max_freq, window[s[right]])
+        while ((right - left + 1) - max_freq) > k:
+            window[s[left]] -= 1
+            left += 1
         max_length = max(max_length, right - left + 1)
 
     return max_length
@@ -239,7 +242,7 @@ def longest_k_distinct(s,k):
         max_length = max(max_length, right - left + 1)
     return max_length
 
-print(longest_k_distinct("BCBBBBDBBBBBBBBBBD",3)) # 18
+print(longest_k_distinct("BCBBBBDBBBBBBBBBBE",3)) # 17
 ##################################################################################################
 # Task 3 - Min window
 def min_window_3(s,t):
@@ -270,8 +273,7 @@ def min_window_3(s,t):
     return result
 
 print(min_window_3("AJOSFAIICMFAWD", "AMIF"))
-
-
-
+####################################################################################
+####################################################################################
 
 
