@@ -1,4 +1,4 @@
-from automation.pages.example_page import ExamplePage
+from archive.automation.pages.example_page import ExamplePage
 
 def test_example_page(page):
     example = ExamplePage(page)

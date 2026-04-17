@@ -1,5 +1,5 @@
-from automation.pages.internet_page import InternetPage
-from automation.utils.helpers import print_step
+from archive.automation.pages.internet_page import InternetPage
+from archive.automation.utils.helpers import print_step
 
 def test_login_success(page):
     print_step("Launching site")

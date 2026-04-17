@@ -1,4 +1,4 @@
-# Day 1 - Python basics
+# Day 1 - Python python
 
 x = 10
 y = "10"
