@@ -11,3 +11,30 @@ def longest_substring(s):
     return max_length
 
 print(longest_substring("abcabcbb"))
+
+def longest_unique_substring(s):
+    max_length = 0
+    left = 0
+    seen = set()
+    for right in range (len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        max_length = max(max_length, (right - left + 1))
+    return max_length
+print(longest_unique_substring("abdacah"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
