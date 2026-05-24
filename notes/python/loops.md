@@ -1,5 +1,11 @@
 # Python Loops — Notes
 
+Status: Learning / Revision / Strong
+Last Revised: 
+
+Interview Confidence:
+⭐ 
+
 ## What is a Loop?
 
 - A loop is a group of statements that repeat multiple times.

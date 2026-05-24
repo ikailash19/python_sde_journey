@@ -1,5 +1,11 @@
 # Python Setup, Variables, Comments — Notes
 
+Status: Learning / Revision / Strong
+Last Revised: 
+
+Interview Confidence:
+⭐ 
+
 ## Python Installation & Nature
 
 - Python is an interpreted language

@@ -1,5 +1,11 @@
 # Python Conditional Statements & Formatting Output — Notes
 
+Status: Learning / Revision / Strong
+Last Revised: 
+
+Interview Confidence:
+⭐ 
+
 ## Output Formatting in Python
 
 There are multiple ways to print variables in Python.

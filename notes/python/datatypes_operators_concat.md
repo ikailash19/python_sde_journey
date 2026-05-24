@@ -1,5 +1,11 @@
 # Python Datatypes, Operators, Concatenation — Notes
 
+Status: Learning / Revision / Strong
+Last Revised: 
+
+Interview Confidence:
+⭐ 
+
 ## Datatypes Overview
 
 - Python provides built-in datatypes to store different kinds of values
