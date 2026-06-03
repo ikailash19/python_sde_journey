@@ -7,9 +7,8 @@ class Booking_Service:
         for spot in movie.seats:
             if spot.seat_number == seat and not spot.is_booked:
                 spot.is_booked = True
-                print(f"Seat Booked for {spot.seat_number}")
-                return
-        print(f"{seat} seat is not available")
+                return True
+        return False
 
     def show_available_seats(self, movie):
         available_seats = []
