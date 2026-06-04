@@ -2,8 +2,8 @@ from booking_service import Booking_Service
 from movie import Movie
 from seat import Seat
 
-picture1 = Movie("Titanic", [Seat(1), Seat(2)])
-picture2 = Movie("Back to the future", [Seat(1), Seat(2), Seat(3)])
+picture1 = Movie("Titanic", 5)
+picture2 = Movie("Back to the future", 10)
 
 agent = Booking_Service()
 status = agent.book_seat(picture1, 2)
