@@ -6,3 +6,6 @@ class Seat:
 
     def book_seat(self):
         self.is_booked = True
+
+    def unbook_seat(self):
+        self.is_booked = False

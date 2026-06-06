@@ -19,7 +19,7 @@ def two_sum_v2(arr,target):
             return [hash_map.get(needed), i]
         hash_map[arr[i]] = i
     return -1
-print(two_sum_v2([1,2,5,6,8,9,4], 14))
+print(two_sum_v2([1,2,5,6,8,9,4], 6))
 
 
 
