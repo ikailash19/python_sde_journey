@@ -5,6 +5,7 @@ class Movie:
         self.movie_name = movie_name
         self.total_seats = total_seats
         self.seats = {}
+        self.movies = []
         if total_seats < 1:
             raise ValueError("Total seats must be positive")
         for seat in range (1, total_seats+1):
