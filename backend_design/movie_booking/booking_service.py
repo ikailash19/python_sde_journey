@@ -1,5 +1,7 @@
 from seat import Seat
 from movie import Movie
+from booking import Booking
+from datetime import datetime
 
 class Booking_Service:
 
@@ -9,11 +11,12 @@ class Booking_Service:
         if spot is None:
             return False
 
-        if not spot.is_booked:
-            spot.book_seat()
-            return True
+        if spot.is_booked:
+            return False
 
-        return False
+        spot.book_seat()
+        booking = Booking(1, movie, spot, datetime.now(), "BOOKED")
+        return booking
 
     def show_available_seats(self, movie):
         available_seats = []
