@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi import HTTPException
+
 from booking_service import Booking_Service
 from movie import Movie
 from seat import Seat
@@ -26,6 +28,16 @@ def get_movies():
 @app.get("/seats")
 def get_seats():
     return {"available_seats": booking_service.show_available_seats(picture1)}
+
+@app.get("/bookings/{booking_id}")
+def get_booking(booking_id:int):
+    booking = booking_service.get_booking(booking_id)
+    if booking is None:
+        raise HTTPException(
+            status_code = 404,
+            detail = "Booking not found"
+        )
+    return booking
 
 @app.get("/")
 def homepage():

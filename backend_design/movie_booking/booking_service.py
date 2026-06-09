@@ -5,6 +5,10 @@ from datetime import datetime
 
 class Booking_Service:
 
+    def __init__(self):
+        self.next_booking_id = 1
+        self.bookings = {}
+
     def book_seat(self, movie, seat):
         spot = movie.get_seat(seat)
         #Seat not available
@@ -15,7 +19,9 @@ class Booking_Service:
             return False
 
         spot.book_seat()
-        booking = Booking(1, movie, spot, datetime.now(), "BOOKED")
+        booking = Booking(self.next_booking_id, movie, spot, datetime.now(), "BOOKED")
+        self.bookings[booking.booking_id] = booking
+        self.next_booking_id += 1
         return booking
 
     def show_available_seats(self, movie):
@@ -24,3 +30,6 @@ class Booking_Service:
             if not seat.is_booked:
                 available_seats.append(seat.seat_number)
         return available_seats
+
+    def get_booking(self, booking_id):
+        return self.bookings.get(booking_id)
