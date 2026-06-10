@@ -39,6 +39,17 @@ def get_booking(booking_id:int):
         )
     return booking
 
+@app.get("/cancel/{booking_id}")
+def cancel_booking(booking_id:int):
+    status = booking_service.cancel_booking(booking_id)
+    if not status:
+        raise HTTPException(
+            status_code = 400,
+            detail = "Booking not found or already cancelled"
+        )
+    else:
+        return "Booking cancelled!"
+
 @app.get("/")
 def homepage():
     return "Welcome to Movie ticket booking"

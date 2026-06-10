@@ -33,3 +33,17 @@ class Booking_Service:
 
     def get_booking(self, booking_id):
         return self.bookings.get(booking_id)
+
+    def cancel_booking(self, booking_id):
+        booking = self.bookings.get(booking_id)
+
+        if booking is None:
+            return False
+
+        if booking.status == "CANCELLED":
+            return False
+
+        booking.status = "CANCELLED"
+        booking.seat.unbook_seat()
+
+        return True
