@@ -1,6 +1,7 @@
 from seat import Seat
 from movie import Movie
 from booking import Booking
+from booking_status import BookingStatus
 from datetime import datetime
 
 class Booking_Service:
@@ -19,7 +20,7 @@ class Booking_Service:
             return False
 
         spot.book_seat()
-        booking = Booking(self.next_booking_id, movie, spot, datetime.now(), "BOOKED")
+        booking = Booking(self.next_booking_id, movie, spot, datetime.now(), BookingStatus.BOOKED)
         self.bookings[booking.booking_id] = booking
         self.next_booking_id += 1
         return booking
@@ -34,16 +35,19 @@ class Booking_Service:
     def get_booking(self, booking_id):
         return self.bookings.get(booking_id)
 
+    def get_all_bookings(self):
+        return list(self.bookings.values())
+
     def cancel_booking(self, booking_id):
         booking = self.bookings.get(booking_id)
 
         if booking is None:
             return False
 
-        if booking.status == "CANCELLED":
+        if booking.status == BookingStatus.CANCELLED:
             return False
 
-        booking.status = "CANCELLED"
+        booking.status = BookingStatus.CANCELLED
         booking.seat.unbook_seat()
 
         return True

@@ -39,6 +39,10 @@ def get_booking(booking_id:int):
         )
     return booking
 
+@app.get("/bookings")
+def get_all_bookings():
+    return booking_service.get_all_bookings()
+
 @app.get("/cancel/{booking_id}")
 def cancel_booking(booking_id:int):
     status = booking_service.cancel_booking(booking_id)
