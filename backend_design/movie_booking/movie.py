@@ -1,7 +1,8 @@
 from seat import Seat
 class Movie:
 
-    def __init__(self, movie_name, total_seats):
+    def __init__(self, movie_id, movie_name, total_seats):
+        self.movie_id = movie_id
         self.movie_name = movie_name
         self.total_seats = total_seats
         self.seats = {}
