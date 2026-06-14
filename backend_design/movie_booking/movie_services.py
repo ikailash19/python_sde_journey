@@ -10,7 +10,7 @@ class Movie_Services:
         movie = Movie(self.next_movie_id, movie_name, total_seats)
         self.movies[self.next_movie_id] = movie
         self.next_movie_id += 1
-        return True
+        return movie
 
     def get_movie(self, movie_id):
         return self.movies.get(movie_id)
