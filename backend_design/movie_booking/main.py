@@ -3,6 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi import HTTPException
 
 from movie_request import MovieRequest
+from booking_request import BookingRequest
 from booking_service import Booking_Service
 from movie_services import Movie_Services
 from movie import Movie
@@ -71,6 +72,35 @@ def get_seats(movie_id:int):
         seats = booking_service.show_available_seats(movie)
         return {"Available_seats": seats}
 ###########################################################################################
+
+#####################/PYDANTIC - BOOKINGS/#################################################
+@app.post("/bookings")
+def book_seat(booking_request:BookingRequest):
+    movie = movie_service.get_movie(
+        booking_request.movie_id
+    )
+    if movie == None:
+        raise HTTPException(
+            status_code = 404,
+            detail = "Movie not found"
+        )
+    booking = booking_service.book_seat(
+        movie,
+        booking_request.seat_number
+    )
+    if booking == None:
+        raise HTTPException(
+            status_code = 404,
+            detail = "Seat not found"
+        )
+    elif booking == False:
+        raise HTTPException(
+            status_code = 409,
+            detail = "Seat already booked"
+        )
+    return booking
+###########################################################################################
+
 
 #####################/BOOKINGS/############################################################
 @app.get("/book-seat/{movie_id}/{seat_number}")

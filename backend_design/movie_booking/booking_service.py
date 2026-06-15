@@ -14,7 +14,7 @@ class Booking_Service:
         spot = movie.get_seat(seat)
         #Seat not available
         if spot is None:
-            return False
+            return None
 
         if spot.is_booked:
             return False
